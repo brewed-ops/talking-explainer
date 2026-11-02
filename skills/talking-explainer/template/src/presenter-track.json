@@ -1,0 +1,340 @@
+{
+  "_doc": "Presenter track for compositions/m-presenter.html (spatial-film/scripts/build-presenter.py). Worked example = REA (126.43s voice). GLOBAL seconds = the cue word minus ~0.1s. Talking demo mascot: point/present reach to the right, nothing mirrored. think/walk have no mouth fit - never while the voice talks (fx/question carries the thinking beats). src/set-presenter.py rewrites poses + fx.",
+  "scale": 0.4,
+  "home": {
+    "x": 300,
+    "feet": 1030
+  },
+  "enter": {
+    "from_x": -360,
+    "at": 0.0,
+    "dur": 0.95
+  },
+  "poses": [
+    [
+      0.0,
+      "present"
+    ],
+    [
+      3.8,
+      "idle"
+    ],
+    [
+      4.7,
+      "wave"
+    ],
+    [
+      6.6,
+      "present"
+    ],
+    [
+      8.0,
+      "idle"
+    ],
+    [
+      9.0,
+      "point"
+    ],
+    [
+      10.6,
+      "present"
+    ],
+    [
+      12.9,
+      "idle"
+    ],
+    [
+      14.3,
+      "point"
+    ],
+    [
+      15.9,
+      "present"
+    ],
+    [
+      17.8,
+      "idle"
+    ],
+    [
+      18.4,
+      "present"
+    ],
+    [
+      23.6,
+      "point"
+    ],
+    [
+      24.4,
+      "idle"
+    ],
+    [
+      27.0,
+      "present"
+    ],
+    [
+      28.3,
+      "idle"
+    ],
+    [
+      30.0,
+      "point"
+    ],
+    [
+      32.1,
+      "present"
+    ],
+    [
+      33.8,
+      "point"
+    ],
+    [
+      35.0,
+      "idle"
+    ],
+    [
+      36.9,
+      "thumbs-up"
+    ],
+    [
+      38.5,
+      "idle"
+    ],
+    [
+      39.9,
+      "present"
+    ],
+    [
+      41.4,
+      "idle"
+    ],
+    [
+      45.4,
+      "point"
+    ],
+    [
+      46.4,
+      "present"
+    ],
+    [
+      48.5,
+      "idle"
+    ],
+    [
+      50.2,
+      "point"
+    ],
+    [
+      52.1,
+      "present"
+    ],
+    [
+      55.3,
+      "point"
+    ],
+    [
+      57.0,
+      "idle"
+    ],
+    [
+      59.4,
+      "point"
+    ],
+    [
+      61.5,
+      "idle"
+    ],
+    [
+      62.7,
+      "present"
+    ],
+    [
+      64.6,
+      "point"
+    ],
+    [
+      66.4,
+      "present"
+    ],
+    [
+      67.9,
+      "point"
+    ],
+    [
+      69.2,
+      "idle"
+    ],
+    [
+      71.5,
+      "thumbs-up"
+    ],
+    [
+      73.2,
+      "idle"
+    ],
+    [
+      75.7,
+      "point"
+    ],
+    [
+      77.6,
+      "present"
+    ],
+    [
+      79.2,
+      "point"
+    ],
+    [
+      81.5,
+      "present"
+    ],
+    [
+      82.9,
+      "idle"
+    ],
+    [
+      85.6,
+      "present"
+    ],
+    [
+      86.5,
+      "idle"
+    ],
+    [
+      90.4,
+      "point"
+    ],
+    [
+      92.4,
+      "present"
+    ],
+    [
+      94.2,
+      "idle"
+    ],
+    [
+      95.8,
+      "present"
+    ],
+    [
+      99.2,
+      "thumbs-up"
+    ],
+    [
+      100.0,
+      "point"
+    ],
+    [
+      103.3,
+      "idle"
+    ],
+    [
+      104.6,
+      "present"
+    ],
+    [
+      107.9,
+      "point"
+    ],
+    [
+      110.3,
+      "idle"
+    ],
+    [
+      111.3,
+      "present"
+    ],
+    [
+      113.4,
+      "idle"
+    ],
+    [
+      114.4,
+      "point"
+    ],
+    [
+      116.3,
+      "idle"
+    ],
+    [
+      116.9,
+      "present"
+    ],
+    [
+      118.2,
+      "thumbs-up"
+    ],
+    [
+      120.1,
+      "idle"
+    ],
+    [
+      121.1,
+      "present"
+    ],
+    [
+      124.6,
+      "wave"
+    ],
+    [
+      126.6,
+      "idle"
+    ]
+  ],
+  "mirror": [],
+  "fx": [
+    {
+      "sprite": "fx/question",
+      "at": 3.85,
+      "out": 4.75,
+      "dx": 170,
+      "dy": -650,
+      "scale": 0.16
+    },
+    {
+      "sprite": "fx/question",
+      "at": 28.35,
+      "out": 29.7,
+      "dx": 170,
+      "dy": -650,
+      "scale": 0.16
+    },
+    {
+      "sprite": "fx/sparkle-burst",
+      "at": 37.2,
+      "out": 38.4,
+      "dx": 200,
+      "dy": -620,
+      "scale": 0.17
+    },
+    {
+      "sprite": "fx/sparkle-burst",
+      "at": 118.6,
+      "out": 119.9,
+      "dx": 200,
+      "dy": -620,
+      "scale": 0.17
+    }
+  ],
+  "mouth": {
+    "rate": 15,
+    "lead": 0.03
+  },
+  "bob": {
+    "rate": 15,
+    "y": -7,
+    "squash": 0.014
+  },
+  "blink": {
+    "every": [
+      3.1,
+      4.4,
+      2.7,
+      3.8,
+      4.9,
+      3.3,
+      2.9,
+      4.1
+    ],
+    "dur": 0.11
+  }
+}

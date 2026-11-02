@@ -1,0 +1,82 @@
+
+<!-- ===================================================================================================
+     APPLE LAYER (REA film) - prefer these over the chunky pieces. ICONS = SOLAR ONLY (references/icons-solar.html:
+     bold-duotone for hero icons, linear for UI chrome) - never Lucide (.kit-ico paths) or Phosphor. Do NOT use .kit-tile, .kit-packet,
+     .kit-parcel, .kit-ghl-form, .kit-n8n in this film (they are the old look).
+     =================================================================================================== -->
+
+<!-- THE LENS - the film's spine. Same look everywhere; prefix the id; animate the wrapper (scale/opacity/x/y/z). -->
+<div id="<id>-lens" class="ap-lens" style="--s:120px">
+  <svg viewBox="0 0 24 24" fill="none"><circle cx="11.5" cy="11.5" r="9.5" stroke="currentColor"/><path d="M18.5 18.5L22 22" stroke="currentColor" stroke-linecap="round"/></svg>
+</div>
+<!-- The big inspection ring (the lens hovering over a thing). Pair it with a short handle: -->
+<div id="<id>-ring" style="position:relative; width:360px; height:360px;">
+  <div class="ap-ring" style="--s:360px; position:absolute; inset:0;"></div>
+  <div style="position:absolute; left:318px; top:318px; width:150px; height:22px; border-radius:11px; background:var(--wh); transform:rotate(45deg); transform-origin:0 50%;"></div>
+</div>
+
+<!-- STATUS BADGES -->
+<div class="ap-badge ok" style="--s:84px"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></div>
+<div class="ap-badge bad" style="--s:84px"><svg viewBox="0 0 24 24"><path d="M18 6 6 18M6 6l12 12"/></svg></div>
+<div class="ap-badge wh" style="--s:84px"><svg viewBox="0 0 24 24" fill="none"><circle cx="11.5" cy="11.5" r="9.5" stroke="currentColor"/><path d="M18.5 18.5L22 22" stroke="currentColor" stroke-linecap="round"/></svg></div>
+
+<!-- GLASS CARD (any panel / step card / quote) -->
+<div class="ap-glass" style="width:560px; padding:44px 48px;">
+  <div class="kit-kicker">Step 1</div>
+  <div class="kit-label sm" style="margin-top:14px;">Ask</div>
+</div>
+
+<!-- DARK AGENT TERMINAL (your AI agent - plain text name, never a logo) -->
+<div class="ap-dark" style="width:820px;">
+  <div class="ap-bar"><i></i><i></i><i></i><b>Claude Code</b></div>
+  <div style="padding:30px 36px; font-size:32px; line-height:1.5;">
+    <div><span style="color:#2997FF">&gt;</span> How does search work?</div>
+  </div>
+</div>
+
+<!-- LIGHT APP WINDOW (their app = orange accents; your app = green accents) -->
+<div class="ap-window" style="width:760px; height:520px;">
+  <div class="ap-bar"><i></i><i></i><i></i><b>Notes</b></div>
+  <div style="padding:30px 36px; font-size:32px;">...</div>
+</div>
+
+<!-- HERO DISPLAY + SUB -->
+<div class="ap-display">REA</div>
+<div class="ap-sub">Reverse Engineer Anything</div>
+
+<!-- HEADLINE (top band) - one span per word; highlight spans carry the meaning class; wrapper never animates -->
+<div class="kit-label" style="position:absolute; left:1050px; top:84px; transform:translateX(-50%);">
+  <span id="<id>-h1w1">What</span> <span id="<id>-h1w2" class="wh">REA</span> <span id="<id>-h1w3">does</span>
+</div>
+
+<!-- MARKER SWEEP behind a word: the word wrapper needs position:relative; z-index:0 -->
+<span style="position:relative; z-index:0;"><i id="<id>-mark1" class="ap-mark wh"></i><span>evidence</span></span>
+
+<!-- ============ LINK - the ONE connection look (assets/kit.css "LINK") ============
+     Every line between two things is a LINK: one smooth cubic bezier (never straight, never an elbow, never a
+     machined cable/plug). Layers share ONE `d`: trk (soft grey track), soft (faint colour halo, only while live),
+     line (the meaning colour), pulse (a short light segment that travels when something flows).
+     Build d from the two end points: M x1 y1 C x1+k y1, x2-k y2, x2 y2 (k = 0.45*|x2-x1|, min 120) - for a
+     vertical link use the y axis instead. Put an .ln-dot on each end. --c = the meaning colour var. Thin variant:
+     class "ln thin" (dense diagrams, 10+ links). Dashed (a "far"/weak relation): class "ln dash" (line only). -->
+<svg class="ln" style="--c:var(--wh)">
+  <path class="trk"   d="M 0 0 C 260 0, 340 220, 600 220"/>
+  <path class="soft"  d="M 0 0 C 260 0, 340 220, 600 220" style="opacity:0"/>
+  <path class="line"  d="M 0 0 C 260 0, 340 220, 600 220"/>
+  <path class="pulse" d="M 0 0 C 260 0, 340 220, 600 220"/>
+</svg>
+<div class="ln-dot" style="left:0px; top:0px; --c:var(--wh)"></div>
+<div class="ln-dot" style="left:600px; top:220px; --c:var(--wh)"></div>
+<script>
+/* LINK MOTION (seekable, deterministic - copy into your scene script).
+   L = path.getTotalLength() measured ONCE at build time (same d => same L for every layer).
+   DRAW: trk + line strokeDasharray `${L} ${L+60}` (gap > L hides the round-cap dot), fromTo strokeDashoffset
+     L+20 -> 0, power3.out 0.7-0.9s (line starts 0.08s after trk). End dots pop with sp(0.45,0.75) as the line
+     reaches them (scale 0 -> 1). A dashed link draws by opacity 0 -> 1 + a clipPath reveal instead.
+   PULSE (something flows): pulse strokeDasharray `60 ${L+400}`, fromTo strokeDashoffset 60 -> -L, sine.inOut
+     0.9-1.2s, immediateRender:false; soft opacity 0 -> .14 while it runs, back to 0 after. More pulses = more
+     fromTo legs at later times (never repeat:-1). The destination pops (scale 1.06, sp) when a pulse lands.
+     The pulse must be fully hidden (offset 60) before its first leg and past the end (-L) after its last.
+   EXIT: line + trk strokeDashoffset 0 -> -(L+20), power2.in 0.45s (retracts toward the far end) or fade with
+     the group. */
+</script>

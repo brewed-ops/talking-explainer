@@ -1,0 +1,110 @@
+
+/* ================= APPLE LAYER - REA film (apple-design skill, 2026-10-12) =================
+   Overrides the kit for a sleek, premium, Apple product-page look: white light, near-black ink, Geist
+   display type with tight tracking, faked glass (NO backdrop-filter inside the 3D rig - it flattens/renders
+   wrong), hairlines instead of borders, soft long shadows. Colour = meaning (frame.md). */
+@font-face { font-family: 'Geist'; font-weight: 100 900; font-style: normal; font-display: block; src: url('fonts/geist-var.woff2') format('woff2'); }
+@font-face { font-family: 'Geist Mono'; font-weight: 100 900; font-style: normal; font-display: block; src: url('fonts/geist-mono-var.woff2') format('woff2'); }
+
+:root {
+  --paper: #F5F5F7; --paper-hi: #FFFFFF; --paper-lo: #E8E8ED; --card: #FFFFFF; --well: #F2F2F5;
+  --ink: #1D1D1F; --ink-soft: #424245; --ink-faint: #6E6E73;
+  /* ORANGE = THEIR thing: the famous cafe + its latte, the original app, someone else's software */
+  --api: #F56300; --api-hi: #FF8A3D; --api-lo: #C24E00; --api-ink: #B64400;
+  /* BLUE = REA + your AI agent + evidence/findings (the lens = the spine) */
+  --wh: #0071E3; --wh-hi: #2997FF; --wh-lo: #0058B0; --wh-ink: #0066CC;
+  /* GREEN = YOURS / allowed (learn, your own version, permission) */
+  --ok: #34C759; --ok-hi: #5AD27A; --ok-ink: #1E8A3C;
+  /* GREY = hidden / unknown (the secret recipe, closed source code, "is it true?") */
+  --reply: #86868B; --reply-lo: #6E6E73;
+  /* RED = NOT allowed only (copy + sell the whole app, steal the name/logo) */
+  --bad: #FF3B30; --bad-ink: #D70015;
+  --hair: rgba(0,0,0,.08);
+  --float: 0 1px 2px rgba(0,0,0,.04), 0 10px 28px -6px rgba(0,0,0,.08), 0 40px 80px -24px rgba(0,0,0,.16);
+}
+
+.kit-ground { background: radial-gradient(115% 85% at 50% 16%, #FFFFFF 0%, #F5F5F7 52%, #E6E6EB 100%); }
+.kit-grain { opacity: .022; }
+/* floor: same canonical transform, Apple-quiet pattern (fine ink dots, no colour) */
+.kit-floor { background-size: 120px 120px; background-position: 60px 60px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='96' height='96'%3E%3Cg fill='%231D1D1F' fill-opacity='.11'%3E%3Ccircle cx='0' cy='0' r='2.4'/%3E%3Ccircle cx='96' cy='0' r='2.4'/%3E%3Ccircle cx='0' cy='96' r='2.4'/%3E%3Ccircle cx='96' cy='96' r='2.4'/%3E%3C/g%3E%3C/svg%3E"); }
+.kit-shadow { background: radial-gradient(closest-side, rgba(0,0,0,.16), rgba(0,0,0,0)); }
+
+/* type: Geist everywhere (Poppins is retired in this film) */
+.kit-chip, .kit-kicker, .kit-label, .kit-caption, .kit-node, .kit-node small, .kit-bubble, .kit-stamp,
+.kit-notif b, .kit-notif span { font-family: 'Geist', sans-serif; }
+.kit-label { font-weight: 700; letter-spacing: -.035em; line-height: 1.02; color: var(--ink); }
+.kit-label.sm { letter-spacing: -.03em; }
+.kit-kicker { font-weight: 600; font-size: 32px; letter-spacing: -.01em; text-transform: none; color: var(--ink-faint); }
+.kit-caption { font-weight: 600; letter-spacing: -.02em; }
+.kit-label .ok, .kit-caption .ok, .kit-kicker .ok { color: var(--ok-ink); }
+.kit-label .bad, .kit-caption .bad, .kit-kicker .bad { color: var(--bad-ink); }
+.kit-label .reply, .kit-caption .reply { color: var(--reply-lo); }
+.kit-kicker .api { color: var(--api-ink); } .kit-kicker .wh { color: var(--wh-ink); }
+.kit-chip { font-weight: 600; border-radius: 999px; background: rgba(255,255,255,.9); box-shadow: var(--float), inset 0 0 0 1px var(--hair); }
+.kit-chip.ok { color: var(--ok-ink); } .kit-chip.bad { color: var(--bad-ink); }
+.kit-card { border-radius: 28px; box-shadow: var(--float), inset 0 0 0 1px var(--hair); }
+.kit-bubble { font-weight: 600; border-radius: 26px; box-shadow: var(--float), inset 0 0 0 1px var(--hair); }
+.kit-stamp { font-weight: 700; letter-spacing: .01em; border-width: 5px; }
+.kit-stamp.ok { color: var(--ok-ink); }
+
+/* ---- Apple components (prefix ap-) ---- */
+/* Hero display word (REA, Weeks / Minutes): huge, tight, near-black */
+.ap-display { font: 700 220px/.92 'Geist', sans-serif; letter-spacing: -.055em; color: var(--ink); white-space: nowrap; }
+.ap-display .wh { color: var(--wh); } .ap-display .ok { color: var(--ok-ink); } .ap-display .api { color: var(--api); }
+.ap-sub { font: 500 44px/1.15 'Geist', sans-serif; letter-spacing: -.02em; color: var(--ink-faint); white-space: nowrap; }
+.ap-mono { font-family: 'Geist Mono', monospace; letter-spacing: 0; }
+
+/* GLASS card - faked material: white gradient + bright top edge + hairline + long soft shadow */
+.ap-glass { position: relative; border-radius: 32px;
+  background: linear-gradient(180deg, rgba(255,255,255,.94), rgba(255,255,255,.74));
+  box-shadow: inset 0 1px 0 rgba(255,255,255,1), inset 0 0 0 1px rgba(0,0,0,.06),
+              0 1px 2px rgba(0,0,0,.04), 0 18px 40px -10px rgba(0,0,0,.10), 0 56px 100px -32px rgba(0,0,0,.20); }
+/* DARK pane - the AI agent terminal + the binary layer */
+.ap-dark { position: relative; border-radius: 28px; color: #F5F5F7; font-family: 'Geist Mono', monospace;
+  background: linear-gradient(180deg, #2C2C2E, #1C1C1E);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.10), inset 0 0 0 1px rgba(255,255,255,.06), 0 40px 80px -24px rgba(0,0,0,.45); }
+.ap-dark .ap-bar, .ap-window .ap-bar { height: 64px; display: flex; align-items: center; gap: 12px; padding: 0 26px;
+  font: 600 26px/1 'Geist', sans-serif; letter-spacing: -.01em; }
+.ap-dark .ap-bar { color: #A1A1A6; border-bottom: 1px solid rgba(255,255,255,.07); }
+.ap-bar i { width: 15px; height: 15px; border-radius: 50%; background: currentColor; opacity: .45; flex: none; }
+.ap-bar b { margin-left: 14px; font-weight: 600; }
+/* LIGHT app window (their app / your app) */
+.ap-window { position: relative; border-radius: 26px; background: #fff; overflow: hidden; color: var(--ink); font-family: 'Geist', sans-serif;
+  box-shadow: inset 0 0 0 1px rgba(0,0,0,.07), 0 1px 2px rgba(0,0,0,.04), 0 24px 56px -14px rgba(0,0,0,.16), 0 60px 110px -40px rgba(0,0,0,.22); }
+.ap-window .ap-bar { color: #86868B; background: #F7F7F9; border-bottom: 1px solid rgba(0,0,0,.06); }
+
+/* THE LENS - the film's spine (REA looking inside). One look everywhere: set --s. */
+.ap-lens { width: var(--s, 120px); height: var(--s, 120px); border-radius: 50%; display: grid; place-items: center;
+  background: linear-gradient(180deg, #2997FF, #0071E3);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.35), 0 12px 30px -8px rgba(0,113,227,.32); }
+.ap-lens svg { width: 52%; height: 52%; color: #fff; fill: none; stroke: #fff; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; }
+.ap-lens svg path, .ap-lens svg circle { stroke-width: 2.2; }
+/* the big inspection ring the lens becomes when it hovers over a thing (glass circle + handle) */
+.ap-ring { width: var(--s, 360px); height: var(--s, 360px); border-radius: 50%;
+  background: radial-gradient(closest-side, rgba(41,151,255,.0) 70%, rgba(41,151,255,.10) 100%);
+  box-shadow: inset 0 0 0 calc(var(--s, 360px) * .028) var(--wh), 0 20px 50px -18px rgba(0,113,227,.35); }
+
+/* round status badges: ok = green check (allowed/yours), bad = red X (not allowed), wh = blue (evidence found) */
+.ap-badge { width: var(--s, 84px); height: var(--s, 84px); border-radius: 50%; display: grid; place-items: center; color: #fff;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.3), 0 10px 24px -8px rgba(0,0,0,.28); }
+.ap-badge svg { width: 54%; height: 54%; fill: none; stroke: currentColor; stroke-width: 3; stroke-linecap: round; stroke-linejoin: round; }
+.ap-badge.ok { background: var(--ok); } .ap-badge.bad { background: var(--bad); } .ap-badge.wh { background: var(--wh); }
+
+/* marker sweep bar behind a word (scaleX 0 -> 1 from the left) */
+.ap-mark { position: absolute; left: -10px; right: -10px; top: 18%; bottom: 8%; border-radius: 12px; transform-origin: 0 50%; z-index: -1; }
+.ap-mark.wh { background: rgba(0,113,227,.14); } .ap-mark.ok { background: rgba(52,199,89,.18); } .ap-mark.bad { background: rgba(255,59,48,.14); } .ap-mark.api { background: rgba(245,99,0,.14); }
+
+/* ================= LINK - the one connection look for the Apple style: a smooth bezier over a soft grey
+   track, meaning-colour line, white end dots, a light pulse when something flows. Markup + motion: snippets "LINK". ================= */
+.ln { position: absolute; left: 0; top: 0; width: 1px; height: 1px; overflow: visible; pointer-events: none; }
+.ln .trk  { fill: none; stroke: #E2E2E7; stroke-width: 9; stroke-linecap: round; }
+.ln .line { fill: none; stroke: var(--c, var(--wh)); stroke-width: 4; stroke-linecap: round; }
+.ln .soft { fill: none; stroke: var(--c, var(--wh)); stroke-width: 14; stroke-linecap: round; opacity: .12; }
+.ln .pulse{ fill: none; stroke: var(--c, var(--wh)); stroke-width: 7; stroke-linecap: round; }
+.ln.thin .trk { stroke-width: 5; } .ln.thin .line { stroke-width: 2.5; } .ln.thin .soft { stroke-width: 9; }
+.ln.thin .pulse { stroke-width: 4.5; }
+.ln.dash .line { stroke-dasharray: 10 9; }
+.ln-dot { position: absolute; width: 18px; height: 18px; margin: -9px 0 0 -9px; border-radius: 50%; background: #fff;
+  box-shadow: 0 0 0 3.5px var(--c, var(--wh)), 0 4px 10px -2px rgba(0,0,0,.18); will-change: transform, opacity; }
+.ln-dot.sm { width: 12px; height: 12px; margin: -6px 0 0 -6px; box-shadow: 0 0 0 2.5px var(--c, var(--wh)), 0 3px 8px -2px rgba(0,0,0,.16); }

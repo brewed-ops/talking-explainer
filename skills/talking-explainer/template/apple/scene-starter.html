@@ -1,0 +1,64 @@
+<!-- Scene starter (1920x1080, REA Apple layer). Copy to compositions/<scene_id>.html, replace every SCENE with the
+     scene id and every DUR with its duration. Keeps: kit link, Geist fonts, ground, the 3-layer camera rig with the
+     kit floor, grain on top, the sp() Apple spring helper, one paused timeline registered last. CANON FLOOR seam: at
+     t=0 and t=DUR the drift and cam layers are at identity and only the ground + floor show. -->
+<template>
+<link rel="stylesheet" href="assets/kit.css">
+<style>
+@font-face { font-family: 'Geist'; font-weight: 100 900; src: url('assets/fonts/geist-var.woff2') format('woff2'); }
+@font-face { font-family: 'Geist Mono'; font-weight: 100 900; src: url('assets/fonts/geist-mono-var.woff2') format('woff2'); }
+#root { position: absolute; inset: 0; width: 1920px; height: 1080px; overflow: hidden; font-family: 'Geist', sans-serif; color: #1D1D1F; }
+.SCENE-layer { position: absolute; inset: 0; transform-style: preserve-3d; will-change: transform; }
+.SCENE-world { position: absolute; left: 50%; top: 50%; transform-style: preserve-3d; will-change: transform; }
+.SCENE-center { position: absolute; left: 0; top: 0; transform: translate(-50%, -50%); }
+</style>
+<div id="root" data-composition-id="SCENE" data-width="1920" data-height="1080">
+  <div id="SCENE-ground" class="clip kit-ground" data-start="0" data-duration="DUR" data-track-index="0"></div>
+  <div id="SCENE-stage" class="clip" data-start="0" data-duration="DUR" data-track-index="1" style="position:absolute; inset:0; perspective:1866px; perspective-origin:50% 50%;">
+    <div id="SCENE-drift" class="SCENE-layer">
+      <div id="SCENE-cam" class="SCENE-layer">
+        <div class="kit-floor"></div>
+        <!-- world objects: a .SCENE-world anchor at frame center, content centered inside it with .SCENE-center -->
+        <div id="SCENE-card" class="SCENE-world"><div class="SCENE-center ap-glass" style="width:520px; height:300px;"></div></div>
+      </div>
+    </div>
+  </div>
+  <div id="SCENE-grain" class="clip kit-grain" data-start="0" data-duration="DUR" data-track-index="9"></div>
+</div>
+<script>
+(function () {
+  var P = 'SCENE-';
+  var $ = function (id) { return '#' + P + id; };
+  var D = DUR;
+  // Apple spring (apple-design skill): response = seconds to reach the target, damping 1 = no overshoot.
+  // Returns { duration, ease } - spread it into a tween: { y: 0, ...sp(0.55) } -> Object.assign({ y: 0 }, sp(0.55)).
+  // damping 1 for everything that simply appears; 0.75-0.8 ONLY for a pop that carries momentum (badge, lens, stamp).
+  function sp(response, damping) {
+    var z = damping == null ? 1 : damping, w = 2 * Math.PI / response;
+    var dur = z >= 1 ? 9.23 / w : -Math.log(0.001) / (z * w);
+    var wd = w * Math.sqrt(Math.max(1e-6, 1 - z * z));
+    return { duration: dur, ease: function (p) {
+      if (p >= 1) return 1; var t = p * dur;
+      if (z >= 1) return 1 - (1 + w * t) * Math.exp(-w * t);
+      return 1 - Math.exp(-z * w * t) * (Math.cos(wd * t) + (z * w / wd) * Math.sin(wd * t)); } };
+  }
+  function A(vars, s) { return Object.assign(vars, s); }
+  var tl = gsap.timeline({ paused: true });
+
+  gsap.set($('card'), { x: 300, y: 0, z: -200, opacity: 0, force3D: true });
+
+  // drift: identity at both ends (canon floor seam), a slow breath in between
+  tl.fromTo($('drift'), { scale: 1, rotationY: 0, rotationX: 0 }, { scale: 1.015, rotationY: 0.8, rotationX: -0.4, duration: D / 2, ease: 'sine.inOut', force3D: true }, 0);
+  tl.fromTo($('drift'), { scale: 1.015, rotationY: 0.8, rotationX: -0.4 }, { scale: 1, rotationY: 0, rotationX: 0, duration: D / 2, ease: 'sine.inOut', force3D: true, immediateRender: false }, D / 2);
+
+  // an arrival with a critically damped spring (starts ~0.15s before its cue word; visually lands on it)
+  tl.fromTo($('card'), { y: 60, z: -200, opacity: 0 }, A({ y: 0, z: 0, opacity: 1, force3D: true }, sp(0.6)), 0.3);
+
+  // exit along the path it came, gone by D - 0.08 (power2.in, nothing lingers into the next scene)
+  tl.fromTo($('card'), { y: 0, z: 0, opacity: 1 }, { y: 40, z: -200, opacity: 0, duration: 0.4, ease: 'power2.in', immediateRender: false, force3D: true }, D - 0.5);
+
+  window.__timelines = window.__timelines || {};
+  window.__timelines['SCENE'] = tl;
+})();
+</script>
+</template>

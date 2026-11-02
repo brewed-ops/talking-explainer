@@ -1,0 +1,79 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="430" viewBox="0 0 1200 430" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif">
+  <title>How a film gets made: you bring the topic, one recording and an approval; Claude does the rest</title>
+  <rect width="1200" height="430" rx="24" fill="#F5F5F7"/>
+
+  <text x="40" y="58" font-size="13" font-weight="600" letter-spacing="1.6" fill="#0071E3">YOU</text>
+  <text x="40" y="404" font-size="13" font-weight="600" letter-spacing="1.6" fill="#6E6E73">CLAUDE</text>
+
+  <line x1="96" y1="215" x2="1130" y2="215" stroke="#D2D2D7" stroke-width="2"/>
+
+  <!-- 1 topic (you) -->
+  <g transform="translate(150 0)">
+    <line x1="0" y1="150" x2="0" y2="215" stroke="#0071E3" stroke-width="2"/>
+    <circle cx="0" cy="215" r="9" fill="#0071E3"/>
+    <rect x="-74" y="76" width="148" height="74" rx="16" fill="#FFFFFF" stroke="#0071E3" stroke-opacity=".35"/>
+    <text x="0" y="106" text-anchor="middle" font-size="17" font-weight="600" fill="#1D1D1F">1. Topic</text>
+    <text x="0" y="130" text-anchor="middle" font-size="13" fill="#6E6E73">one sentence</text>
+  </g>
+
+  <!-- 2 script (claude) -->
+  <g transform="translate(305 0)">
+    <line x1="0" y1="215" x2="0" y2="280" stroke="#86868B" stroke-width="2"/>
+    <circle cx="0" cy="215" r="9" fill="#1D1D1F"/>
+    <rect x="-74" y="280" width="148" height="74" rx="16" fill="#FFFFFF" stroke="#000" stroke-opacity=".08"/>
+    <text x="0" y="310" text-anchor="middle" font-size="17" font-weight="600" fill="#1D1D1F">2. Script</text>
+    <text x="0" y="334" text-anchor="middle" font-size="13" fill="#6E6E73">researched, your style</text>
+  </g>
+
+  <!-- 3 take (you) -->
+  <g transform="translate(460 0)">
+    <line x1="0" y1="150" x2="0" y2="215" stroke="#0071E3" stroke-width="2"/>
+    <circle cx="0" cy="215" r="9" fill="#0071E3"/>
+    <rect x="-74" y="76" width="148" height="74" rx="16" fill="#FFFFFF" stroke="#0071E3" stroke-opacity=".35"/>
+    <text x="0" y="106" text-anchor="middle" font-size="17" font-weight="600" fill="#1D1D1F">3. Your take</text>
+    <text x="0" y="130" text-anchor="middle" font-size="13" fill="#6E6E73">one MP3</text>
+  </g>
+
+  <!-- 4 timings (claude) -->
+  <g transform="translate(615 0)">
+    <line x1="0" y1="215" x2="0" y2="280" stroke="#86868B" stroke-width="2"/>
+    <circle cx="0" cy="215" r="9" fill="#1D1D1F"/>
+    <rect x="-74" y="280" width="148" height="74" rx="16" fill="#FFFFFF" stroke="#000" stroke-opacity=".08"/>
+    <text x="0" y="310" text-anchor="middle" font-size="17" font-weight="600" fill="#1D1D1F">4. Timings</text>
+    <text x="0" y="334" text-anchor="middle" font-size="13" fill="#6E6E73">each word timed</text>
+  </g>
+
+  <!-- 5 storyboard (claude writes, you approve) -->
+  <g transform="translate(770 0)">
+    <line x1="0" y1="150" x2="0" y2="280" stroke="#0071E3" stroke-width="2" stroke-dasharray="4 5"/>
+    <circle cx="0" cy="215" r="9" fill="#0071E3"/>
+    <rect x="-74" y="76" width="148" height="74" rx="16" fill="#FFFFFF" stroke="#0071E3" stroke-opacity=".35"/>
+    <text x="0" y="106" text-anchor="middle" font-size="17" font-weight="600" fill="#1D1D1F">Approve</text>
+    <text x="0" y="130" text-anchor="middle" font-size="13" fill="#6E6E73">the scene list</text>
+    <rect x="-74" y="280" width="148" height="74" rx="16" fill="#FFFFFF" stroke="#000" stroke-opacity=".08"/>
+    <text x="0" y="310" text-anchor="middle" font-size="17" font-weight="600" fill="#1D1D1F">5. Storyboard</text>
+    <text x="0" y="334" text-anchor="middle" font-size="13" fill="#6E6E73">a frame per paragraph</text>
+  </g>
+
+  <!-- 6 scenes (claude) -->
+  <g transform="translate(925 0)">
+    <line x1="0" y1="215" x2="0" y2="280" stroke="#86868B" stroke-width="2"/>
+    <circle cx="0" cy="215" r="9" fill="#1D1D1F"/>
+    <rect x="-74" y="280" width="148" height="74" rx="16" fill="#FFFFFF" stroke="#000" stroke-opacity=".08"/>
+    <text x="0" y="310" text-anchor="middle" font-size="17" font-weight="600" fill="#1D1D1F">6. Scenes</text>
+    <text x="0" y="334" text-anchor="middle" font-size="13" fill="#6E6E73">built in parallel</text>
+  </g>
+
+  <!-- 7 render (claude) + film out -->
+  <g transform="translate(1080 0)">
+    <line x1="0" y1="215" x2="0" y2="280" stroke="#86868B" stroke-width="2"/>
+    <circle cx="0" cy="215" r="9" fill="#1D1D1F"/>
+    <rect x="-74" y="280" width="148" height="74" rx="16" fill="#FFFFFF" stroke="#000" stroke-opacity=".08"/>
+    <text x="0" y="310" text-anchor="middle" font-size="17" font-weight="600" fill="#1D1D1F">7. Render</text>
+    <text x="0" y="334" text-anchor="middle" font-size="13" fill="#6E6E73">60fps + sync proof</text>
+    <rect x="-74" y="76" width="148" height="74" rx="16" fill="#0071E3"/>
+    <text x="0" y="106" text-anchor="middle" font-size="17" font-weight="600" fill="#FFFFFF">Your film</text>
+    <text x="0" y="130" text-anchor="middle" font-size="13" fill="#FFFFFF" fill-opacity=".8">1080p, MP4</text>
+    <line x1="0" y1="150" x2="0" y2="206" stroke="#0071E3" stroke-width="2"/>
+  </g>
+</svg>
