@@ -44,7 +44,7 @@ runs on your recording (here, a computer voice reading one line). He waves on "G
 
 ## What you need
 
-| | |
+| Need | Details |
 |---|---|
 | **Claude Code** | Any paid Claude plan. A film uses several parallel agents, so expect a long session (1-3 hours). |
 | **A voice** | An [ElevenLabs](https://elevenlabs.io) voice clone (Starter plan or up), or a decent mic in a quiet room to read the script in one take. |
